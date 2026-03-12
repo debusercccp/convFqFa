@@ -1,115 +1,67 @@
-convFqFa
+Strumenti per la conversione di file genomici dal formato FASTQ al formato FASTA. Il repository offre un'implementazione in Python per la massima portabilità e una in Rust per prestazioni elevate.
+Logica di Conversione
 
-Conversione di file genomici dal formato FASTQ al formato FASTA. 
-Il progetto include un'implementazione in Python per e una in Rust.
+Il passaggio da FASTQ (4 righe) a FASTA (2 righe) avviene come segue:
 
-Descrizione del formato
+    Header: La riga iniziante con @ diventa l'header FASTA iniziante con >.
 
-Il processo di conversione segue le specifiche dello standard FASTQ (4 righe per record) per generare un file FASTA (2 righe per record):
+    Sequenza: La riga nucleotidica viene mantenuta integralmente.
 
-    Header: La prima riga del record FASTQ (che inizia con @) viene convertita in header FASTA sostituendo il prefisso con >.
+    Qualità: Il separatore + e i punteggi di qualità vengono scartati.
 
-    Sequenza: La seconda riga (sequenza nucleotidica) viene preservata integralmente.
+Implementazione Python (convpy.py)
 
-    Qualità: Le righe 3 e 4 (separatore + e stringa di qualità) vengono ignorate.
+Script essenziale che utilizza esclusivamente la libreria standard di sistema.
 
-Implementazione Python
+    Requisiti: Python 3.x.
 
-Il file convpy.py è uno script leggero che utilizza esclusivamente la libreria standard di Python.
-Requisiti
-
-    Python 3.x
-
-Utilizzo
+    Utilizzo:
+    Bash
 
     python convpy.py percorso/del/file.fastq
 
-L'output verrà generato automaticamente nella stessa directory del file sorgente con estensione .fa.
-Implementazione Rust
+    Note: L'output .fa viene generato automaticamente nella stessa cartella dell'input.
 
-Il progetto contenuto nella directory conv/ è progettato per gestire file di grandi dimensioni riducendo al minimo l'overhead di memoria grazie all'uso di buffer di lettura.
-Requisiti
+Implementazione Rust (conv/)
 
-    rustc e cargo
+Versione ottimizzata con gestione della memoria tramite buffer, ideale per file di grandi dimensioni.
+Compilazione e Installazione
 
-Compilazione
+    Build (Release):
+    Bash
 
-Per ottimizzare le prestazioni, compilare il binario in modalità release:
+cd conv
+cargo build --release
 
-    cd conv
-    cargo build --release
-
-Installazione nel Sistema (PATH)
-
-Per utilizzare il convertitore come comando globale del terminale:
+Installazione Globale:
+Bash
 
     cargo install --path .
-
-Una volta installato, è possibile richiamare lo strumento da qualsiasi directory digitando semplicemente:
-
-    conv esempio.fastq
-
-Struttura del Repository
-
-    convpy.py: Implementazione in linguaggio Python.
-
-    conv/: Progetto Rust gestito da Cargo.
-
-    .gitignore: Esclusioni predefinite per file binari (target/), cache di Python e file di sequenziamento pesanti.
-
-Note sulle Prestazioni
-
-Per file di input superiori a 500MB o per processamenti massivi di dataset genomici, è caldamente raccomandato l'utilizzo della versione Rust compilata con il flag --release.  in Rust per l'efficienza computazionale.
-Descrizione del formato
-
-Il processo di conversione segue le specifiche dello standard FASTQ (4 righe per record) per generare un file FASTA (2 righe per record):
-
-    Header: La prima riga del record FASTQ (che inizia con @) viene convertita in header FASTA sostituendo il prefisso con >.
-
-    Sequenza: La seconda riga (sequenza nucleotidica) viene preservata integralmente.
-
-    Qualità: Le righe 3 e 4 (separatore + e stringa di qualità) vengono ignorate.
-
-Implementazione Python
-
-Il file convpy.py è uno script leggero che utilizza esclusivamente la libreria standard di Python.
-Requisiti
-
-    Python 3.x
 
 Utilizzo
 
-    python convpy.py percorso/del/file.fastq
+Una volta installato, il comando è richiamabile da qualsiasi directory:
+Bash
 
-L'output verrà generato automaticamente nella stessa directory del file sorgente con estensione .fa.
+conv esempio.fastq
 
-Implementazione Rust
+Automazione Bash (converti_tutti.sh)
 
-Compilazione
+Script per il processamento batch di tutti i file in una directory.
 
-Per ottimizzare le prestazioni, compilare il binario in modalità release:
+    Permessi: chmod +x converti_tutti.sh
 
-    cd conv
-    cargo build --release
+    Esecuzione: ./converti_tutti.sh [cartella]
 
-Installazione nel Sistema (PATH)
+Struttura del Progetto
 
-Per utilizzare il convertitore come comando globale del terminale:
+    convpy.py: Script Python indipendente.
 
-    cargo install --path .
+    conv/: Directory sorgente del progetto Rust.
 
-Una volta installato, è possibile richiamare lo strumento da qualsiasi directory digitando semplicemente:
+    .gitignore: Filtri per binari (target/), cache e file genomici pesanti.
 
-    conv esempio.fastq
+Performance
 
-Struttura del Repository
+Si raccomanda l'uso della versione Rust (compilata con --release) per file superiori a 500MB o per elaborazioni massive di dataset, al fine di ridurre drasticamente i tempi di calcolo.
 
-    convpy.py: Implementazione in linguaggio Python.
-
-    conv/: Progetto Rust gestito da Cargo.
-
-    .gitignore: Esclusioni predefinite per file binari (target/), cache di Python e file di sequenziamento pesanti.
-
-Note sulle Prestazioni
-
-Per file di input superiori a 500MB o per processamenti massivi di dataset genomici, è raccomandato l'utilizzo della versione Rust compilata con il flag --release.

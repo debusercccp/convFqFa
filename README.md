@@ -1,3 +1,5 @@
+#convFqFa
+
 Strumenti per la conversione di file genomici dal formato FASTQ al formato FASTA. Il repository offre un'implementazione in Python per la massima portabilità e una in Rust per prestazioni elevate.
 Logica di Conversione
 

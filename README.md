@@ -21,9 +21,8 @@ Requisiti
     Python 3.x
 
 Utilizzo
-Bash
 
-python convpy.py percorso/del/file.fastq
+    python convpy.py percorso/del/file.fastq
 
 L'output verrà generato automaticamente nella stessa directory del file sorgente con estensione .fa.
 Implementazione Rust
@@ -31,27 +30,24 @@ Implementazione Rust
 Il progetto contenuto nella directory conv/ è progettato per gestire file di grandi dimensioni riducendo al minimo l'overhead di memoria grazie all'uso di buffer di lettura.
 Requisiti
 
-    Toolchain Rust (rustc e cargo)
+    rustc e cargo
 
 Compilazione
 
 Per ottimizzare le prestazioni, compilare il binario in modalità release:
-Bash
 
-cd conv
-cargo build --release
+    cd conv
+    cargo build --release
 
 Installazione nel Sistema (PATH)
 
 Per utilizzare il convertitore come comando globale del terminale:
-Bash
 
-cargo install --path .
+    cargo install --path .
 
 Una volta installato, è possibile richiamare lo strumento da qualsiasi directory digitando semplicemente:
-Bash
 
-conv esempio.fastq
+    conv esempio.fastq
 
 Struttura del Repository
 
@@ -82,37 +78,29 @@ Requisiti
     Python 3.x
 
 Utilizzo
-Bash
 
-python convpy.py percorso/del/file.fastq
+    python convpy.py percorso/del/file.fastq
 
 L'output verrà generato automaticamente nella stessa directory del file sorgente con estensione .fa.
+
 Implementazione Rust
-
-Il progetto contenuto nella directory conv/ è progettato per gestire file di grandi dimensioni riducendo al minimo l'overhead di memoria grazie all'uso di buffer di lettura.
-Requisiti
-
-    Toolchain Rust (rustc e cargo)
 
 Compilazione
 
 Per ottimizzare le prestazioni, compilare il binario in modalità release:
-Bash
 
-cd conv
-cargo build --release
+    cd conv
+    cargo build --release
 
 Installazione nel Sistema (PATH)
 
 Per utilizzare il convertitore come comando globale del terminale:
-Bash
 
-cargo install --path .
+    cargo install --path .
 
 Una volta installato, è possibile richiamare lo strumento da qualsiasi directory digitando semplicemente:
-Bash
 
-conv esempio.fastq
+    conv esempio.fastq
 
 Struttura del Repository
 
@@ -124,4 +112,4 @@ Struttura del Repository
 
 Note sulle Prestazioni
 
-Per file di input superiori a 500MB o per processamenti massivi di dataset genomici, è caldamente raccomandato l'utilizzo della versione Rust compilata con il flag --release.
+Per file di input superiori a 500MB o per processamenti massivi di dataset genomici, è raccomandato l'utilizzo della versione Rust compilata con il flag --release.

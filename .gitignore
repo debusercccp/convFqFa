@@ -1,0 +1,26 @@
+# --- RUST ---
+# Cartella dove finiscono i binari compilati (molto pesante!)
+/target/
+# File di lock generati da Cargo
+**/*.rs.bk
+
+# --- PYTHON ---
+# Cartelle di cache dei byte-code
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ambienti virtuali (se ne usi uno)
+venv/
+.venv/
+env/
+
+# --- GENERICI / BIOINFORMATICA ---
+# Evitiamo di caricare i dati pesanti se sono solo di test
+*.fastq
+*.fq
+*.fasta
+*.fa
+# File di log o temporanei
+*.log
+.DS_Store

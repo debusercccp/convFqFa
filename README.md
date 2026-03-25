@@ -1,69 +1,93 @@
 # ConvFqFa
 
 Strumenti per la conversione di file genomici dal formato FASTQ al formato FASTA. Il repository offre un'implementazione in Python per la massima portabilità e una in Rust per prestazioni elevate.
-Logica di Conversione
+
+---
+
+## Logica di Conversione
 
 Il passaggio da FASTQ (4 righe) a FASTA (2 righe) avviene come segue:
 
-    Header: La riga iniziante con @ diventa l'header FASTA iniziante con >.
+- **Header:** La riga iniziante con `@` diventa l'header FASTA iniziante con `>`.
+- **Sequenza:** La riga nucleotidica viene mantenuta integralmente.
+- **Qualità:** Il separatore `+` e i punteggi di qualità vengono scartati.
 
-    Sequenza: La riga nucleotidica viene mantenuta integralmente.
+---
 
-    Qualità: Il separatore + e i punteggi di qualità vengono scartati.
-
-Implementazione Python (convpy.py)
+## Implementazione Python (`convpy.py`)
 
 Script essenziale che utilizza esclusivamente la libreria standard di sistema.
 
-    Requisiti: Python 3.x.
+**Requisiti:** Python 3.x
 
-    Utilizzo:
-    Bash
+**Utilizzo:**
 
-    python convpy.py percorso/del/file.fastq
+```bash
+python convpy.py percorso/del/file.fastq
+```
 
-    Note: L'output .fa viene generato automaticamente nella stessa cartella dell'input.
+> L'output `.fa` viene generato automaticamente nella stessa cartella dell'input.
 
-Implementazione Rust (conv/)
+---
+
+## Implementazione Rust (`conv/`)
 
 Versione ottimizzata con gestione della memoria tramite buffer, ideale per file di grandi dimensioni.
-Compilazione e Installazione
 
-    Build (Release):
-    Bash
+### Compilazione e Installazione
 
+**Build (Release):**
+
+```bash
 cd conv
 cargo build --release
+```
 
-Installazione Globale:
-Bash
+**Installazione Globale:**
 
-    cargo install --path .
+```bash
+cargo install --path .
+```
 
-Utilizzo
+### Utilizzo
 
 Una volta installato, il comando è richiamabile da qualsiasi directory:
-Bash
 
+```bash
 conv esempio.fastq
+```
 
-Automazione Bash (converti_tutti.sh)
+---
+
+## Automazione Bash (`converti_tutti.sh`)
 
 Script per il processamento batch di tutti i file in una directory.
 
-    Permessi: chmod +x converti_tutti.sh
+**Permessi:**
 
-    Esecuzione: ./converti_tutti.sh [cartella]
+```bash
+chmod +x converti_tutti.sh
+```
 
-Struttura del Progetto
+**Esecuzione:**
 
-    convpy.py: Script Python indipendente.
+```bash
+./converti_tutti.sh [cartella]
+```
 
-    conv/: Directory sorgente del progetto Rust.
+---
 
-    .gitignore: Filtri per binari (target/), cache e file genomici pesanti.
+## Struttura del Progetto
 
-Performance
+```
+convFqFa/
+├── convpy.py           # Script Python indipendente
+├── conv/               # Directory sorgente del progetto Rust
+└── .gitignore          # Filtri per binari (target/), cache e file genomici pesanti
+```
 
-Si raccomanda l'uso della versione Rust (compilata con --release) per file superiori a 500MB o per elaborazioni massive di dataset, al fine di ridurre drasticamente i tempi di calcolo.
+---
 
+## Performance
+
+Si raccomanda l'uso della versione Rust (compilata con `--release`) per file superiori a **500 MB** o per elaborazioni massive di dataset, al fine di ridurre drasticamente i tempi di calcolo.

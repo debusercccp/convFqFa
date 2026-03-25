@@ -14,7 +14,7 @@ Il passaggio da FASTQ (4 righe) a FASTA (2 righe) avviene come segue:
 
 ---
 
-## Implementazione Python (`convpy.py`)
+## Implementazione Python (convpy.py)
 
 Script essenziale che utilizza esclusivamente la libreria standard di sistema.
 
@@ -30,7 +30,7 @@ python convpy.py percorso/del/file.fastq
 
 ---
 
-## Implementazione Rust (`conv/`)
+## Implementazione Rust (conv/)
 
 Versione ottimizzata con gestione della memoria tramite buffer, ideale per file di grandi dimensioni.
 
@@ -59,7 +59,7 @@ conv esempio.fastq
 
 ---
 
-## Automazione Bash (`converti_tutti.sh`)
+## Automazione Bash (converti_tutti.sh)
 
 Script per il processamento batch di tutti i file in una directory.
 
